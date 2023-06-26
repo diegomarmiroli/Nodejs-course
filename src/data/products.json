@@ -1,1 +1,12 @@
-[]
+[
+    {
+        "id": 1,
+        "nombre": "Procesador Intel I5 10600KF",
+        "precio": 106543.25
+    },
+    {
+        "id": 2,
+        "nombre": "AMD Ryzen 5 5600X",
+        "precio": 125800.3
+    }
+]

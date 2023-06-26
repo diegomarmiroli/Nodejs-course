@@ -1,30 +1,10 @@
-const fs = require("fs");
 const path = require("path");
+const { read, write } = require("./file.manager.js");
 
-const file = path.join(__dirname, "product.json");
-
-function read() {
-    return new Promise((resolve, reject) => {
-        fs.readFile(file, "utf8", (error, result) => {
-            if (error) reject(new Error("No se puede leer el archivo."));
-
-            resolve(JSON.parse(result));
-        });
-    });
-}
-
-function write(element) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(file, JSON.stringify(element, null, "\t"), "utf-8", (error) => {
-            if (error) reject(new Error("Hubo un error al insertar el nuevo contenido"));
-
-            resolve(true);
-        });
-    });
-}
+const file = path.join(__dirname, "products.json");
 
 function getNewId(array) {
-    const newId = 0;
+    let newId = 0;
 
     array.forEach((element) => {
         newId = element.id;
@@ -33,21 +13,26 @@ function getNewId(array) {
     return newId + 1;
 }
 
-async function getAll() {
-    const data = await read();
+async function getProducts() {
+    const data = await read(file);
     return data;
 }
 
-async function insertNew(element) {
-    const data = await leer();
+async function getProductById(id) {
+    const data = await read(file);
 
-    const newData = { id: getNewId(data), element };
-
-    data.push(element);
-
-    await write(data);
-
-    return newData;
+    return data.find((e) => e.id === id);
 }
 
-module.exports = { getAll, insertNew };
+async function insertProduct(element) {
+    const products = await read(file);
+
+    const newProduct = { id: getNewId(products), ...element };
+    products.push(newProduct);
+
+    await write(products, file);
+
+    return newProduct;
+}
+
+module.exports = { getProducts, insertProduct };
