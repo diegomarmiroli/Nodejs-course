@@ -2,10 +2,10 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-const { getProducts, insertProduct } = require("./data/product.manager.js");
+const { getAll, getOneById, insert, update, remove } = require("./data/product.manager.js");
 
 require("dotenv").config(); // Inicializo la obtención de las variables .env
-const { SERVER_HOST, SERVER_PORT } = process.env;
+const { SERVER_HOST = "127.0.0.1", SERVER_PORT = 3000 } = process.env;
 
 app.use(express.json()); // Middleware que permite trabajar con JSON en peticiones
 app.use(express.urlencoded({ extended: true })); // Middleware que permite trabajar con FORMS Encoded
@@ -19,23 +19,62 @@ app.get("/", (req, res) => {
 });
 
 app.get("/products", (req, res) => {
-    getProducts()
+    getAll()
         .then((data) => {
             res.status(200).send(data);
         })
         .catch((err) => res.status(400).send(err.message));
 });
 
-app.post("/products", (req, res) => {
-    const { nombre, precio } = req.body;
+app.get("/products/:id", (req, res) => {
+    const { id } = req.params;
 
-    insertProduct({ nombre, precio })
+    getOneById(id)
+        .then((product) => {
+            res.status(200).send(product);
+        })
+        .catch((err) => res.status(400).send(err.message));
+});
+
+app.post("/products", (req, res) => {
+    const { nombre, precio, ...params } = req.body;
+
+    insert({ nombre, precio, ...params })
         .then((product) => {
             res.status(201).send(JSON.stringify(product));
         })
         .catch((error) => {
-            res.status(400).send(error);
+            res.status(400).send(error.message);
         });
+});
+
+app.put("/products/:id", (req, res) => {
+    const { id } = req.params;
+    const { nombre, precio } = req.body;
+
+    update({ id: Number(id), nombre, precio: Number(precio) })
+        .then((product) => {
+            res.status(200).send(JSON.stringify(product));
+        })
+        .catch((error) => {
+            res.status(400).send(error.message);
+        });
+});
+
+app.delete("/products/:id", (req, res) => {
+    const { id } = req.params;
+
+    remove({ id: Number(id) })
+        .then((product) => {
+            res.status(200).send(JSON.stringify(product));
+        })
+        .catch((error) => {
+            res.status(400).send(error.message);
+        });
+});
+
+app.use("*", (req, res) => {
+    res.status(404).send({ message: "No se encontró el recurso." });
 });
 
 app.listen(SERVER_PORT, SERVER_HOST, () => {

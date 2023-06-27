@@ -7,10 +7,10 @@
 //         console.log(error);
 //     });
 
-let data = {
-    nombre: "AMD Ryzen 5 5600X",
-    precio: 125800.3,
-};
+// let data = {
+//     nombre: "AMD Ryzen 5 5600X",
+//     precio: 125800.3,
+// };
 
 fetch("/products", {
     method: "POST",
