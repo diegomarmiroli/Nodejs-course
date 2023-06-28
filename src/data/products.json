@@ -1,28 +1,28 @@
 [
-    {
-        "id": 1,
-        "nombre": "Intel I5 10600KF",
-        "precio": 106543.25
-    },
-    {
-        "id": 2,
-        "nombre": "Intel Pentium 5600H",
-        "precio": 54670,
-        "peso": null,
-        "descripcion": null
-    },
-    {
-        "id": 3,
-        "nombre": "AMD Ryzen 5 3600",
-        "precio": 78950,
-        "peso": 152,
-        "descripcion": null
-    },
-    {
-        "id": 4,
-        "nombre": "AMD Ryzen 3 3300X",
-        "precio": 55200,
-        "peso": null,
-        "descripcion": "Procesador Gama Baja"
-    }
+	{
+		"id": 1,
+		"nombre": "Intel I5 10600KF",
+		"precio": 106543.25
+	},
+	{
+		"id": 2,
+		"nombre": "Intel Pentium 5600H",
+		"precio": 54670,
+		"peso": null,
+		"descripcion": null
+	},
+	{
+		"id": 3,
+		"nombre": "AMD Ryzen 5 3600",
+		"precio": 78950,
+		"peso": 152,
+		"descripcion": null
+	},
+	{
+		"id": 4,
+		"nombre": "AMD Ryzen 5 5600X",
+		"precio": 125800.3,
+		"descripcion": null,
+		"peso": null
+	}
 ]

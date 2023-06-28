@@ -50,13 +50,14 @@ app.post("/products", (req, res) => {
 
 app.put("/products/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre, precio } = req.body;
+    const { nombre, precio, ...params } = req.body;
 
-    update({ id: Number(id), nombre, precio: Number(precio) })
+    update({ id, nombre, precio, ...params })
         .then((product) => {
             res.status(200).send(JSON.stringify(product));
         })
         .catch((error) => {
+            console.log();
             res.status(400).send(error.message);
         });
 });
@@ -64,7 +65,7 @@ app.put("/products/:id", (req, res) => {
 app.delete("/products/:id", (req, res) => {
     const { id } = req.params;
 
-    remove({ id: Number(id) })
+    remove(id)
         .then((product) => {
             res.status(200).send(JSON.stringify(product));
         })
@@ -74,7 +75,7 @@ app.delete("/products/:id", (req, res) => {
 });
 
 app.use("*", (req, res) => {
-    res.status(404).send({ message: "No se encontró el recurso." });
+    res.status(404).send("No se encontró el recurso.");
 });
 
 app.listen(SERVER_PORT, SERVER_HOST, () => {

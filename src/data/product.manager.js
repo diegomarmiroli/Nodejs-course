@@ -44,8 +44,6 @@ async function getOneById(id) {
 }
 
 async function insert(product) {
-    if (!product.nombre.trim() || !product.precio) throw new Error("Faltan datos para agregar un producto");
-
     validateProduct(product);
 
     const { nombre, precio, descripcion, peso } = product;
@@ -56,7 +54,7 @@ async function insert(product) {
         id: getNewId(products),
         nombre: nombre.trim(),
         precio: Number(precio),
-        descripcion: descripcion.trim(),
+        descripcion: descripcion?.trim() ?? null,
         peso: peso === undefined ? null : Number(peso),
     };
 
@@ -69,25 +67,38 @@ async function insert(product) {
 
 async function update(product) {
     if (!product.id) throw new Error("Se debe proporcionar el id del producto a modificar.");
+    if (isNaN(Number(product.id))) throw new Error("Se debe proporcionar un id válido.");
+
+    validateProduct(product);
+
     const products = await read(file);
 
-    let { id, nombre, precio, peso = null, descripcion = null } = product; // Desestructuración del producto
+    let { id, nombre, precio, peso, descripcion } = product; // Desestructuración del producto
 
-    const index = products.findIndex((e) => e.id === product.id);
+    const index = products.findIndex((e) => e.id === Number(id));
 
     if (index < 0) throw new Error("No se encontró un producto con el id proporcionado.");
 
-    products[index] = product;
+    products[index] = {
+        id: Number(id),
+        nombre: nombre.trim(),
+        precio: Number(precio),
+        descripcion: descripcion?.trim() ?? null,
+        peso: peso === undefined ? null : Number(peso),
+    };
 
     await write(products, file);
 
-    return product;
+    return products[index];
 }
 
-async function remove(product) {
+async function remove(id) {
+    if (!id) throw new Error("Se debe proporcionar el id del producto a eliminar.");
+    if (isNaN(Number(id))) throw new Error("Se debe proporcionar un id válido.");
+
     const products = await read(file);
 
-    const index = products.findIndex((e) => e.id === product.id);
+    const index = products.findIndex((e) => e.id === Number(id));
 
     const deleted = products[index];
 
@@ -99,20 +110,27 @@ async function remove(product) {
 }
 
 function validateProduct({ nombre, descripcion, peso, precio }) {
-    if (!nombre.trim().length < 5) {
-        throw new Error({ message: "El nombre debe contener más de 5 caracteres." });
+    if (!nombre?.trim()) {
+        throw new Error("El producto debe contener nombre.");
+    }
+    if (!precio) {
+        throw new Error("El producto debe tener asignado un precio.");
+    }
+
+    if (nombre.trim().length < 5) {
+        throw new Error("El nombre debe contener más de 5 caracteres.");
     }
 
     if (descripcion && descripcion.trim().length < 10) {
-        throw new Error({ message: "La descripción debe contener más de 10 caracteres." });
+        throw new Error("La descripción debe contener más de 10 caracteres.");
     }
 
     if (peso && isNaN(Number(peso))) {
-        throw new Error({ message: "El peso debe ser un número válido." });
+        throw new Error("El peso debe ser un número válido.");
     }
 
     if (precio && isNaN(Number(precio))) {
-        throw new Error({ message: "El precio debe ser un importe válido." });
+        throw new Error("El precio debe ser un importe válido.");
     }
 }
 
