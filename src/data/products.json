@@ -1,77 +1,30 @@
 [
     {
         "id": 1,
-        "nombre": "Intel I5 10600KF",
-        "precio": 106543.25
-    },
-    {
-        "id": 2,
         "nombre": "Intel Pentium 5600H",
         "precio": 54670,
         "peso": null,
         "descripcion": null
     },
     {
-        "id": 3,
+        "id": 2,
         "nombre": "AMD Ryzen 5 3600",
         "precio": 78950,
         "peso": 152,
         "descripcion": null
     },
     {
+        "id": 3,
+        "nombre": "Intel I5 10400F",
+        "precio": 65980.25,
+        "descripcion": "Procesador gama media",
+        "peso": null
+    },
+    {
         "id": 4,
-        "nombre": "AMD Ryzen 5 5600X",
-        "precio": 125800.3,
-        "descripcion": null,
+        "nombre": "AMD Athlon 3000G",
+        "precio": 35000,
+        "descripcion": "Procesador gama baja con integrada.",
         "peso": null
-    },
-    {
-        "id": 5,
-        "nombre": "Memoria Ram 8Gb DDR4 3200Mhz",
-        "precio": 15600,
-        "descripcion": null,
-        "peso": null
-    },
-    {
-        "id": 9,
-        "nombre": "Intel I3 11100KF",
-        "precio": 36780,
-        "peso": 107,
-        "descripcion": "Procesador bueno"
-    },
-    {
-        "id": 10,
-        "nombre": "Intel I3 12100KS",
-        "precio": 52700,
-        "peso": null,
-        "descripcion": null
-    },
-    {
-        "id": 11,
-        "nombre": "Intel I7 10700K",
-        "precio": 156700,
-        "descripcion": "Procesador Gama Alta",
-        "peso": null
-    },
-    {
-        "id": 12,
-        "nombre": "Intel I9 9900K",
-        "precio": 156200,
-        "descripcion": "Viejardo viejo",
-        "peso": 0
-    },
-    {
-        "id": 13,
-        "nombre": "AMD Ryzen 9 3950X",
-        "precio": 225000,
-        "descripcion": "Una Ganga Posta",
-        "peso": 0
-    },
-    {
-        "id": 14,
-        "nombre": "AMD Ryzen 7 58003DX",
-        "precio": 225000,
-        "descripcion": "Procesador Tope de gama",
-        "peso": 156
     }
 ]
