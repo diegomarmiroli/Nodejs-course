@@ -1,58 +1,60 @@
 # CRUD de Productos con Express
 
 Este es un proyecto que implementa un CRUD (Crear, Leer, Actualizar, Eliminar) de productos utilizando el framework Node.js llamado Express.
-Endpoints
+
+# Endpoints
 
 El CRUD de productos ofrece las siguientes rutas (endpoints) para interactuar con la base de datos:
 
-    Obtener todos los productos
-        Método: GET
-        Ruta: /products
-        Descripción: Obtiene todos los productos almacenados en la base de datos.
-        Respuesta: Un arreglo JSON con todos los productos.
+1. Obtener todos los productos
+   Método: GET
+   Ruta: /products
+   Descripción: Obtiene todos los productos almacenados en la base de datos.
+   Respuesta: Un arreglo JSON con todos los productos.
 
-    Obtener un producto por ID
-        Método: GET
-        Ruta: /products/:id
-        Descripción: Obtiene un producto específico basado en su ID.
-        Parámetros:
-            :id (parámetro de ruta) - El ID del producto que se desea obtener.
-        Respuesta: Un objeto JSON que representa el producto solicitado.
+2. Obtener un producto por ID
+   Método: GET
+   Ruta: /products/:id
+   Descripción: Obtiene un producto específico basado en su ID.
+   Parámetros:
+   :id (parámetro de ruta) - El ID del producto que se desea obtener.
+   Respuesta: Un objeto JSON que representa el producto solicitado.
 
-    Insertar un nuevo producto
-        Método: POST
-        Ruta: /products
-        Descripción: Inserta un nuevo producto en la base de datos.
-        Cuerpo de la solicitud: Un objeto JSON que representa el nuevo producto con las siguientes propiedades:
-            nombre (string) - El nombre del producto.
-            precio (number) - El precio del producto.
-            peso (number) - El peso del producto.
-            descripcion (string) - La descripción del producto.
-        Respuesta: Un objeto JSON que representa el producto recién creado con su ID generado automáticamente.
+3. Insertar un nuevo producto
+   Método: POST
+   Ruta: /products
+   Descripción: Inserta un nuevo producto en la base de datos.
+   Cuerpo de la solicitud: Un objeto JSON que representa el nuevo producto con las siguientes propiedades:
+   nombre (string) - El nombre del producto.
+   precio (number) - El precio del producto.
+   peso (number) - El peso del producto.
+   descripcion (string) - La descripción del producto.
+   Respuesta: Un objeto JSON que representa el producto recién creado con su ID generado automáticamente.
 
-    Actualizar un producto por ID
-        Método: PUT
-        Ruta: /products/:id
-        Descripción: Actualiza un producto existente basado en su ID.
-        Parámetros:
-            :id (parámetro de ruta) - El ID del producto que se desea actualizar.
-        Cuerpo de la solicitud: Un objeto JSON que contiene las propiedades que se desean actualizar del producto. Puede contener una o varias de las siguientes propiedades:
-            nombre (string) - El nuevo nombre del producto.
-            precio (number) - El nuevo precio del producto.
-            peso (number) - El nuevo peso del producto.
-            descripcion (string) - La nueva descripción del producto.
-        Respuesta: Un objeto JSON que representa el producto actualizado.
+4. Actualizar un producto por ID
+   Método: PUT
+   Ruta: /products/:id
+   Descripción: Actualiza un producto existente basado en su ID.
+   Parámetros:
+   :id (parámetro de ruta) - El ID del producto que se desea actualizar.
+   Cuerpo de la solicitud: Un objeto JSON que contiene las propiedades que se desean actualizar del producto. Puede contener una o varias de las siguientes propiedades:
+   nombre (string) - El nuevo nombre del producto.
+   precio (number) - El nuevo precio del producto.
+   peso (number) - El nuevo peso del producto.
+   descripcion (string) - La nueva descripción del producto.
+   Respuesta: Un objeto JSON que representa el producto actualizado.
 
-    Eliminar un producto por ID
-        Método: DELETE
-        Ruta: /products/:id
-        Descripción: Elimina un producto de la base de datos basado en su ID.
-        Parámetros:
-            :id (parámetro de ruta) - El ID del producto que se desea eliminar.
-        Respuesta: Un mensaje de éxito indicando que el producto ha sido eliminado correctamente.
+5. Eliminar un producto por ID
+   Método: DELETE
+   Ruta: /products/:id
+   Descripción: Elimina un producto de la base de datos basado en su ID.
+   Parámetros:
+   :id (parámetro de ruta) - El ID del producto que se desea eliminar.
+   Respuesta: Un mensaje de éxito indicando que el producto ha sido eliminado correctamente.
 
 Ejemplos de uso
-Obtener todos los productos
+
+## Obtener todos los productos
 
 ```bash
 
@@ -82,7 +84,7 @@ Respuesta:
 ]
 ```
 
-Obtener un producto por ID
+## Obtener un producto por ID
 
 ```bash
 
@@ -101,7 +103,7 @@ Respuesta:
 }
 ```
 
-Insertar un nuevo producto
+## Insertar un nuevo producto
 
 ```bash
 
@@ -131,7 +133,7 @@ Respuesta:
 }
 ```
 
-Actualizar un producto por ID
+## Actualizar un producto por ID
 
 ```bash
 
@@ -159,7 +161,7 @@ Respuesta:
 }
 ```
 
-Eliminar un producto por ID
+## Eliminar un producto por ID
 
 ```bash
 
