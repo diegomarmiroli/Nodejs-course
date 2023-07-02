@@ -55,14 +55,14 @@ app.post("/products", (req, res) => {
         res.status(400).send("La descripción del producto debe tener al menos 10 caracteres.");
         return;
     } else {
-        descripcion = descripcion !== undefined ? descripcion.trim() : null;
+        descripcion = descripcion !== undefined && descripcion !== null ? descripcion.trim() : null;
     }
 
     if (peso !== undefined && isNaN(Number(peso))) {
         res.status(400).send("El peso debe ser un número válido.");
         return;
     } else {
-        peso = peso !== undefined ? Number(peso) : null;
+        peso = peso !== undefined && peso !== null ? Number(peso) : null;
     }
 
     insert({ nombre: nombre.trim(), precio, descripcion, peso })
